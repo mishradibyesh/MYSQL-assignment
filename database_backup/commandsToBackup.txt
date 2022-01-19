@@ -115,4 +115,11 @@ mysql> select * from tech_stack;
 mysql> exit
 Bye
 
+/*
+snapshot example
+*/
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysqldump -u root -p lms --master-data > lmsdbdump.db
+Enter password: *********
+
 C:\Program Files\MySQL\MySQL Server 8.0\bin>
