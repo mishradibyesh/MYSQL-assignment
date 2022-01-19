@@ -1,0 +1,118 @@
+/* 
+creating database backup 
+*/
+
+C:\Users\dibye>cd..
+
+C:\Users>cd..
+
+C:\>cd "Program Files"
+
+C:\Program Files>cd MySQL
+
+C:\Program Files\MySQL>cd "MySQL Server 8.0"
+
+C:\Program Files\MySQL\MySQL Server 8.0>cd bin
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysqldump -u root -p lms >D:\OneDrive\Desktop\assignments_db\database_backup\lms_backup.sql
+Enter password: *********
+
+/* 
+droping  the database from mysql  
+*/
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 25
+Server version: 8.0.27 MySQL Community Server - GPL
+
+mysql> drop database lms;
+Query OK, 32 rows affected (0.65 sec)
+
+mysql> use lms;
+ERROR 1049 (42000): Unknown database 'lms'
+mysql> create database lms;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> exit
+Bye
+
+/* 
+restoring database backup from the backup file
+*/
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p lms < D:\OneDrive\Desktop\assignments_db\database_backup\lms_backup.sql
+Enter password: *********
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 31
+Server version: 8.0.27 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use lms;
+Database changed
+mysql> show tables;
++------------------------------------+
+| Tables_in_lms                      |
++------------------------------------+
+| app_parameters                     |
+| boys                               |
+| candidate_bank_det                 |
+| candidate_docs                     |
+| candidate_qualification            |
+| candidate_techstack_assignment     |
+| candidates_education_det_check     |
+| candidates_personal_det_check      |
+| company                            |
+| company_requirement                |
+| company_trash                      |
+| detailsmakerplan                   |
+| fellowship_candidates              |
+| hired_candidate                    |
+| lab                                |
+| lab_threshold                      |
+| log_subpart                        |
+| maker_program                      |
+| mentor                             |
+| mentor_ideation_map                |
+| mentor_techstack                   |
+| personwhoseeducationchecked        |
+| selected_candidate                 |
+| selected_candidate_by_key          |
+| selected_candidate_by_pincode      |
+| selected_candidate_by_range_column |
+| snamewithcompanyassigned           |
+| tech_stack                         |
+| tech_type                          |
+| temporary_mis                      |
+| user_details                       |
+| user_roles                         |
++------------------------------------+
+32 rows in set (0.02 sec)
+
+mysql> select * from tech_stack;
++-----+------------+------------+-----------+------------+---------------------+--------------+
+| id  | tech_name  | image_path | framework | cur_status | creator_stamp       | creator_user |
++-----+------------+------------+-----------+------------+---------------------+--------------+
+| 501 | python     | image1     | django    | A          | 2021-03-01 00:00:00 |            1 |
+| 502 | javascript | image1     | Nodejs    | B          | 2021-02-01 00:00:00 |            1 |
+| 503 | python     | image1     | fastapi   | C          | 2021-04-01 00:00:00 |            1 |
+| 504 | python     | image1     | flask     | D          | 2019-03-01 00:00:00 |            1 |
+| 505 | python     | image1     | django    | E          | 2018-03-01 00:00:00 |            1 |
++-----+------------+------------+-----------+------------+---------------------+--------------+
+5 rows in set (0.01 sec)
+
+mysql> exit
+Bye
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>
